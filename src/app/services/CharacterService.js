@@ -8,12 +8,12 @@ class CharacterService extends BaseService {
 
     async getCharacters(page, title) {
         const offset = (page - 1) * this.limit;
-        let url = `https://gateway.marvel.com/v1/public/characters?&ts=1610817437&apikey=${this.apikey}&hash=${this.hash}&limit=${this.limit}&offset=${offset}`;
+        let url = `https://gateway.marvel.com/v1/public/characters?ts=${this.ts}&apikey=${this.apikey}&hash=${this.hash}&limit=${this.limit}&offset=${offset}`;
 
         if (title !== undefined) {
             url += `&nameStartWith=${title}`;
         }
-
+        console.log(url);
         const response = await axios.get(url);
 
         return {
