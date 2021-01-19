@@ -1,16 +1,10 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _apiMarvel = require('../services/apiMarvel'); var _apiMarvel2 = _interopRequireDefault(_apiMarvel);
-// import SetPagination from '../../setPagination';
-
-// const page = new SetPagination();
-
-// `/${page}`
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; } function _nullishCoalesce(lhs, rhsFn) { if (lhs != null) { return lhs; } else { return rhsFn(); } }var _ApiMarvel = require('../services/ApiMarvel'); var _ApiMarvel2 = _interopRequireDefault(_ApiMarvel);
 
 class UserController {
     async index(request, response) {
         try {
-            // const { offset } = pagination;
-
-            const { data } = await _apiMarvel2.default.get();
+            const { page, title } = request.params;
+            const { data } = await _ApiMarvel2.default.getCharacters(_nullishCoalesce(page, () => ( 1)), title);
 
             return response.json(data);
         } catch (error) {
@@ -18,17 +12,16 @@ class UserController {
         }
     }
 
-    /* async show(request, response) {
+    async show(request, response) {
         try {
-            const {page} = request.params;
-
-            const { data } = await apiMarvel.get(`/${page}`);
+            const { id } = request.params;
+            const data = await _ApiMarvel2.default.getCharacter(id);
 
             return response.json(data);
         } catch (error) {
             return response.status(error.status || 400).json(error);
         }
-    } */
+    }
 }
 
 exports. default = new UserController();

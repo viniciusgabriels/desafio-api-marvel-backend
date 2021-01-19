@@ -1,16 +1,10 @@
-import apiMarvel from '../services/apiMarvel';
-// import SetPagination from '../../setPagination';
-
-// const page = new SetPagination();
-
-// `/${page}`
+import ApiMarvel from '../services/ApiMarvel';
 
 class UserController {
     async index(request, response) {
         try {
-            // const { offset } = pagination;
-
-            const { data } = await apiMarvel.get();
+            const { page, title } = request.params;
+            const { data } = await ApiMarvel.getCharacters(page ?? 1, title);
 
             return response.json(data);
         } catch (error) {
@@ -18,17 +12,16 @@ class UserController {
         }
     }
 
-    /* async show(request, response) {
+    async show(request, response) {
         try {
-            const {page} = request.params;
-
-            const { data } = await apiMarvel.get(`/${page}`);
+            const { id } = request.params;
+            const data = await ApiMarvel.getCharacter(id);
 
             return response.json(data);
         } catch (error) {
             return response.status(error.status || 400).json(error);
         }
-    } */
+    }
 }
 
 export default new UserController();
