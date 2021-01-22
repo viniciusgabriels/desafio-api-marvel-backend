@@ -3,13 +3,13 @@
 var _UserController = require('./app/controllers/UserController'); var _UserController2 = _interopRequireDefault(_UserController);
 // import CharacterController from './app/controllers/CharacterController';
 
-var _logRequests = require('./app/middlewares/logRequests'); var _logRequests2 = _interopRequireDefault(_logRequests);
-// import logMiddleware from './app/middlewares/logMiddleware';
+// import logRequestsMiddleware from './app/middlewares/logRequests';
+var _logMiddleware = require('./app/middlewares/logMiddleware'); var _logMiddleware2 = _interopRequireDefault(_logMiddleware);
 
 const routes = new (0, _express.Router)();
 
-routes.use(_logRequests2.default);
-// routes.use(logMiddleware.register);
+// routes.use(logRequestsMiddleware);
+routes.use(_logMiddleware2.default.register);
 
 routes.get('/characters', _UserController2.default.index);
 routes.get('/characters/:id', _UserController2.default.show);

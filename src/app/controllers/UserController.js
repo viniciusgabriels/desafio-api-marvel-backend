@@ -3,8 +3,8 @@ import ApiMarvel from '../services/ApiMarvel';
 class UserController {
     async index(request, response) {
         try {
-            const { page, title } = request.params;
-            const { data } = await ApiMarvel.getCharacters(page ?? 1, title);
+            const { page, title } = request.query;
+            const data = await ApiMarvel.getCharacters(page ?? 1, title);
 
             return response.json(data);
         } catch (error) {

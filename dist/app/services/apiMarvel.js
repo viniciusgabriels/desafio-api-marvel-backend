@@ -22,7 +22,7 @@ class ApiMarvel {
         if (title !== undefined) {
             url += `&nameStartWith=${title}`;
         }
-        console.log(url);
+
         const response = await _axios2.default.get(url);
 
         return {

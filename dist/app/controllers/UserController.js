@@ -3,8 +3,8 @@
 class UserController {
     async index(request, response) {
         try {
-            const { page, title } = request.params;
-            const { data } = await _ApiMarvel2.default.getCharacters(_nullishCoalesce(page, () => ( 1)), title);
+            const { page, title } = request.query;
+            const data = await _ApiMarvel2.default.getCharacters(_nullishCoalesce(page, () => ( 1)), title);
 
             return response.json(data);
         } catch (error) {
