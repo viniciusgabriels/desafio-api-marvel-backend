@@ -10,11 +10,6 @@ class ApiMarvel {
         this.ts = '1610817437';
     }
 
-    /* const apiMarvel = axios.create({
-        baseURL:
-            'https://gateway.marvel.com/v1/public/characters?ts=1610817437&apikey=c21148b20116248c0a757e825782d215&hash=2765274c7dfa30a581d0d26414b987d5&limit=100&offset=0',
-    }); */
-
     async getCharacters(page, title) {
         const offset = (page - 1) * this.limit;
         let url = `https://gateway.marvel.com/v1/public/characters?ts=${this.ts}&apikey=${this.apikey}&hash=${this.hash}&limit=${this.limit}&offset=${offset}`;
