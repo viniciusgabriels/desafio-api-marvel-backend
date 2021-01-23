@@ -4,7 +4,10 @@ class UserController {
     async index(request, response) {
         try {
             const { page, title } = request.query;
-            const data = await ApiMarvel.getCharacters(page ?? 1, title);
+            const data = await ApiMarvel.getCharacters(
+                page != null ? page : 1,
+                title
+            );
 
             return response.json(data);
         } catch (error) {
