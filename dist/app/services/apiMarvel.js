@@ -28,7 +28,19 @@ class ApiMarvel {
     }
 
     async getCharacter(id) {
-        const url = `https://gateway.marvel.com/v1/public/characters/${id}?&ts=1610817437&apikey=${this.apikey}&hash=${this.hash}`;
+        const url = `https://gateway.marvel.com/v1/public/characters/${id}?&ts=${this.ts}&apikey=${this.apikey}&hash=${this.hash}`;
+        const response = await _axios2.default.get(url);
+
+        return {
+            data:
+                response.data.data.results.length > 0
+                    ? response.data.data.results[0]
+                    : null,
+        };
+    }
+
+    async getComic(comicId) {
+        const url = `https://gateway.marvel.com/v1/public/comics/${comicId}?&ts=${this.ts}&apikey=${this.apikey}&hash=${this.hash}`;
         const response = await _axios2.default.get(url);
 
         return {
