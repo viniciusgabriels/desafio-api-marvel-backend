@@ -15,7 +15,7 @@ class ApiMarvel {
         let url = `https://gateway.marvel.com/v1/public/characters?ts=${this.ts}&apikey=${this.apikey}&hash=${this.hash}&limit=${this.limit}&offset=${offset}`;
 
         if (title !== undefined) {
-            url += `&nameStartWith=${title}`;
+            url += `&nameStartsWith=${title}`;
         }
 
         const response = await axios.get(url);
